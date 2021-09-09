@@ -1,0 +1,22 @@
+{
+  "name": "wom21-exempel",
+  "version": "1.0.0",
+  "description": "Varje lektions exempelkod sparas i en skild branch. Välj branch genom att klicka på branch-menyn på github",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fw-teaching/wom21-exempel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fw-teaching/wom21-exempel/issues"
+  },
+  "homepage": "https://github.com/fw-teaching/wom21-exempel#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
