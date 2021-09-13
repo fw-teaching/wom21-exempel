@@ -4,7 +4,8 @@
   "description": "Varje lektions exempelkod sparas i en skild branch. Välj branch genom att klicka på branch-menyn på github",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -L server.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,10 @@
   },
   "homepage": "https://github.com/fw-teaching/wom21-exempel#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }

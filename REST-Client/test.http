@@ -1,1 +1,23 @@
-GET http://localhost:3000
+@baseUrl=http://localhost:3000
+
+GET {{baseUrl}}
+
+###
+
+GET {{baseUrl}}/notes
+
+###
+POST {{baseUrl}}/notes
+Content-Type: application/json
+
+{
+    "text": "sov mera"
+}
+
+###
+PUT {{baseUrl}}/notes/1
+Content-Type: application/json
+
+{
+    "text": "Gå på gym i morgon"
+}
