@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    // req.body = { "text": "hej" }
     try {
         const note = new Note({
             text: req.body.text
@@ -27,7 +26,6 @@ router.post('/', async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
-
 })
 
 const getNoteById = async (req, res, next) => {
