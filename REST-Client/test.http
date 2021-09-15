@@ -11,13 +11,20 @@ POST {{baseUrl}}/notes
 Content-Type: application/json
 
 {
-    "text": "sov mera"
+    "text": "Köp smör"
 }
+###
+GET {{baseUrl}}/notes/613e33f6de9a42cdd92308ff
+
 
 ###
-PUT {{baseUrl}}/notes/1
+PUT {{baseUrl}}/notes/613e370a4bf62b8fca0d1c8d
 Content-Type: application/json
 
 {
-    "text": "Gå på gym i morgon"
+    "archived": true
 }
+
+###
+DELETE {{baseUrl}}/notes/613e3402de9a42cdd9230902
+

@@ -1,11 +1,15 @@
 require('dotenv').config() // läs in .env-filen
 const express = require('express')
 const app = express()
-const PORT = 3000
 
-console.log(process.env.TEST) // Skriv ut variabel från .env 
+// Mongoose connection 
+const mongoose = require('mongoose')
+mongoose.connect(process.env.DB_URL)
+const db = mongoose.connection
+db.on('error', (error) => console.log(error))
+db.once('open', () => console.log('Connected to DB'))
 
-console.log("hello node!")
+const PORT = process.env.PORT || 3000
 
 // Vår API ska ta emot requests i JSON-format
 app.use(express.json())
