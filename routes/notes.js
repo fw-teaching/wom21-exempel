@@ -1,19 +1,28 @@
 const express = require('express')
 const router = express.Router()
 const Note = require('../models/notesModel')
+const authorize = require('../middleware/authorize')
 
-
-const notes = [{ text: "gamla objektet!"}]
+router.use(authorize)
 
 router.get('/', async (req, res) => {
     try {
-        const notes = await Note.find()
+        const notes = await Note.find({ archived: { $ne: true } })
         res.send(notes)
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
-    
 })
+
+router.get('/archived', async (req, res) => {
+    try {
+        const notes = await Note.find({ archived: true })
+        res.send(notes)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
 
 router.post('/', async (req, res) => {
     try {
@@ -54,10 +63,19 @@ router.put('/:id', getNoteById, async (req, res) => {
 
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', getNoteById, async (req, res) => {
     try {
-        const deletedNote = await Note.deleteOne({ _id: req.params.id }).exec()
-        res.json({message: "Note deleted!", deleted: deletedNote.deletedCount})
+        if (req.note.archived) {
+            // Om noten är arkiverad, radera permanent
+            await Note.deleteOne({ _id: req.params.id }).exec()
+            res.json({message: "Note deleted!" })
+
+        } else {
+            // Om noten inte är arkiverad, arkivera
+            await req.note.updateOne({ archived: true })
+            res.json({message: "Note archived!" })
+        }
+
 
     } catch (error) {
         res.status(500).send(error.message)

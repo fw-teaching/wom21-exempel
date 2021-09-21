@@ -7,17 +7,24 @@ const User = require('../models/usersModel')
 
 router.post('/login', async (req, res) => {
     try {
-
-        console.log(req.body)
-
         const user = await User.findOne({ email: req.body.email }).exec()
         if (!user) return res.status(400).json({message: "No such user"})
 
         const match = await bcrypt.compare(req.body.password, user.password)
         if (match) {
 
-            // Create JWT
-            return res.status(201).send('SUCCESS')
+            const jwtBody = {
+                sub: user._id,
+                email: user.email
+            }
+
+            const accessToken = await jwt.sign(
+                jwtBody, 
+                process.env.JWT_SECRET, 
+                { expiresIn: '1d' }
+            )
+
+            return res.status(201).send(accessToken)
 
         }
 

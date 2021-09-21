@@ -1,17 +1,31 @@
-@baseUrl=http://localhost:3000
-
+//@baseUrl=http://localhost:3000
+@baseUrl=https://wom21-notes.azurewebsites.net
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTQxZTkzNGQ4ODYwMDdhZTQwMzMzMWYiLCJlbWFpbCI6ImphbmVAZG9lLmNvbSIsImlhdCI6MTYzMjE0MTUwNywiZXhwIjoxNjMyMjI3OTA3fQ.uLwx_VzIsPX2Oo5hc_5kXmOGUHUg0RhrUn5ggaRlNXs
 GET {{baseUrl}}
+
+
+### Login
+POST {{baseUrl}}/users/login
+Content-Type: application/json
+
+{  "email": "jane@doe.com",  "password": "Password123"}
 
 ###
 
 GET {{baseUrl}}/notes
+Authorization: Bearer {{token}}
+###
+
+GET {{baseUrl}}/notes/archived
+Authorization: Bearer {{token}}
 
 ###
 POST {{baseUrl}}/notes
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-    "text": "Köp smör"
+    "text": "Köp bröd"
 }
 ###
 GET {{baseUrl}}/notes/613e33f6de9a42cdd92308ff
@@ -22,9 +36,9 @@ PUT {{baseUrl}}/notes/613e370a4bf62b8fca0d1c8d
 Content-Type: application/json
 
 {
-    "archived": true
+    "text": "Köp smör"
 }
 
 ###
-DELETE {{baseUrl}}/notes/613e3402de9a42cdd9230902
-
+DELETE {{baseUrl}}/notes/61487ad5e6e511bb58232d44
+Authorization: Bearer {{token}}
