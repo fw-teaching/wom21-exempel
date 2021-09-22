@@ -14,10 +14,12 @@ const PORT = process.env.PORT || 3000
 // Vår API ska ta emot requests i JSON-format
 app.use(express.json())
 
-app.get('/', (req, res) => {
+app.use('/', express.static(__dirname + '/html'))
+
+/*app.get('/', (req, res) => {
     //res.send("Hello Node!")
     res.json({ message: "Hello Node!"})
-})
+})*/
 
 // Vi importerar vår notes route-modul
 const notesRouter = require('./routes/notes')
@@ -25,5 +27,6 @@ app.use('/notes', notesRouter)
 
 const usersRouter = require('./routes/users')
 app.use('/users', usersRouter)
+
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`))
