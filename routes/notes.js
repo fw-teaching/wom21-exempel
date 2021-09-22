@@ -3,16 +3,19 @@ const router = express.Router()
 const Note = require('../models/notesModel')
 const authorize = require('../middleware/authorize')
 
-router.use(authorize)
+
 
 router.get('/', async (req, res) => {
     try {
-        const notes = await Note.find({ archived: { $ne: true } })
+        const notes = [ {"text": "hello" } ]//await Note.find({ archived: { $ne: true } })
+
         res.send(notes)
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
 })
+
+router.use(authorize)
 
 router.get('/archived', async (req, res) => {
     try {

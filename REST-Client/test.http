@@ -1,6 +1,7 @@
-//@baseUrl=http://localhost:3000
-@baseUrl=https://wom21-notes.azurewebsites.net
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTQxZTkzNGQ4ODYwMDdhZTQwMzMzMWYiLCJlbWFpbCI6ImphbmVAZG9lLmNvbSIsImlhdCI6MTYzMjE0MTUwNywiZXhwIjoxNjMyMjI3OTA3fQ.uLwx_VzIsPX2Oo5hc_5kXmOGUHUg0RhrUn5ggaRlNXs
+#@baseUrl=http://localhost:3000
+#@baseUrl=https://wom21-notes.azurewebsites.net
+@baseUrl=https://agile-spire-87708.herokuapp.com
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTQxZTkzNGQ4ODYwMDdhZTQwMzMzMWYiLCJlbWFpbCI6ImphbmVAZG9lLmNvbSIsImlhdCI6MTYzMjMxMTEwMiwiZXhwIjoxNjMyMzk3NTAyfQ.XpUoHtxn_Mz9n4rM8tu9jZyS2QhK4riqLHR7p7bT8TQ
 GET {{baseUrl}}
 
 
