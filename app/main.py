@@ -11,17 +11,19 @@ print(os.environ.get('FOO'))
 
 # Funktioner definieras med def
 def get_notes():
-    return [ { "text": "föö" },   { "text": "bar" } ]
+    return [ { "text": "åäö" },   { "text": "bar" } ]
 
 # Create Flask instance
 app = Flask(__name__)
 # Tillåt utf-8 i JSON:
 app.config['JSON_AS_ASCII'] = False
 
+# Konfiguration för SQLAlchemy 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+# User-model skapar en tabell med kolumner i PostgreSQL
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(), nullable=False)
@@ -35,13 +37,14 @@ class User(db.Model):
 @app.route("/")
 def index():
     ret = []
+    # Loopa varje rad i User-tabellen och lägg till i ret
     for u in User.query.all():
-        print(u)
         ret.append({'email': u.email, 'updated_at': u.updated_at})
 
     return jsonify(ret)
 
 
+# Route: /notes
 @app.route("/notes")
 def notes():
     print("GET notes")
