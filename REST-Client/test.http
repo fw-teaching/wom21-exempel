@@ -1,30 +1,8 @@
-@baseUrl=http://localhost:3000
+@remoteUrl=http://127.0.0.1:5000/
+#@remoteUrl=https://nameless-sands-86463.herokuapp.com
 
-GET {{baseUrl}}
+### GET
+GET {{remoteUrl}}
 
-###
-
-GET {{baseUrl}}/notes
-
-###
-POST {{baseUrl}}/notes
-Content-Type: application/json
-
-{
-    "text": "Köp smör"
-}
-###
-GET {{baseUrl}}/notes/613e33f6de9a42cdd92308ff
-
-
-###
-PUT {{baseUrl}}/notes/613e370a4bf62b8fca0d1c8d
-Content-Type: application/json
-
-{
-    "archived": true
-}
-
-###
-DELETE {{baseUrl}}/notes/613e3402de9a42cdd9230902
-
+### GET
+GET {{remoteUrl}}/notes
