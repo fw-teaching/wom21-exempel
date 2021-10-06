@@ -1,5 +1,5 @@
-import os
-from flask import Flask, jsonify
+import os, requests
+from flask import Flask, jsonify, request
 from dotenv import load_dotenv
 
 from flask_sqlalchemy import SQLAlchemy
@@ -8,10 +8,6 @@ from flask_sqlalchemy import SQLAlchemy
 # Load variables from .env
 load_dotenv()
 print(os.environ.get('FOO')) 
-
-# Funktioner definieras med def
-def get_notes():
-    return [ { "text": "åäö" },   { "text": "bar" } ]
 
 # Create Flask instance
 app = Flask(__name__)
@@ -33,13 +29,43 @@ class User(db.Model):
         return '<User {}>'.format(self.email)
 
 
+#notes_token = os.environ.get('NOTES_TOKEN')
+
+try:
+    url = 'https://wom21-notes.azurewebsites.net/users/login'
+    header = { 'Content-Type': 'application/json' }
+    body = {  "email": "jane@doe.com",  "password": os.environ.get('NOTES_PASSWORD')}
+
+    response = requests.post(url, headers=header, json=body)
+
+    notes_token = response.content.decode('utf-8')
+    print("Token: {}".format(response.content.decode('utf-8')))
+
+except Exception as e:
+    print(e)
+
+
+
 # Default route to /
-@app.route("/")
+@app.route("/", methods = ['GET', 'POST', 'PUT'])
 def index():
     ret = []
-    # Loopa varje rad i User-tabellen och lägg till i ret
-    for u in User.query.all():
-        ret.append({'email': u.email, 'updated_at': u.updated_at})
+    if request.method == 'GET':
+        # Loopa varje rad i User-tabellen och lägg till i ret
+        for u in User.query.all():
+            ret.append({'id': u.id, 'email': u.email, 'updated_at': u.updated_at})
+
+    if request.method == 'POST':
+        body = request.get_json()
+
+        new_user = User(email=body['email'])
+        db.session.add(new_user)
+        db.session.commit()
+
+        ret = [ "added new user!" ]
+
+    if request.method == 'PUT':
+        ret = [ "put!" ]
 
     return jsonify(ret)
 
@@ -48,7 +74,13 @@ def index():
 @app.route("/notes")
 def notes():
     print("GET notes")
-    return jsonify(get_notes())
+    url = 'https://wom21-notes.azurewebsites.net/notes'
+    header = { 'Authorization': 'Bearer {}'.format(notes_token) }
+
+    response = requests.get(url, headers=header)
+    return jsonify(response.json())
+
+
 
 
 

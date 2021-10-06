@@ -1,4 +1,17 @@
 {
     "appService.showBuildDuringDeployPrompt": false,
-    "appService.defaultWebAppToDeploy": "None"
+    "appService.defaultWebAppToDeploy": "None",
+    "sqltools.connections": [
+
+        {
+            "previewLimit": 50,
+            "server": "ec2-44-198-154-255.compute-1.amazonaws.com",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "heroku-postgres",
+            "database": "d6nu5h77g48vaq",
+            "username": "wytwnirgvipqdg",
+            "password": "af420860ada36f81cb779bb566569aa001ec8f48a11af6522236c2f0893115f1"
+        }
+    ]
 }

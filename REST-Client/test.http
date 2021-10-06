@@ -1,8 +1,20 @@
-@remoteUrl=http://127.0.0.1:5000/
+@baseUrl=http://127.0.0.1:5000/
 #@remoteUrl=https://nameless-sands-86463.herokuapp.com
 
-### GET
-GET {{remoteUrl}}
+### Hämta alla användare
+GET {{baseUrl}}
+
+
+### Skapa ny användare
+POST {{baseUrl}}
+Content-Type: application/json
+
+{ "email": "john@doe.com" }
+
+### Skapa ny användare
+PUT {{baseUrl}}
+Content-Type: application/json
+
 
 ### GET
-GET {{remoteUrl}}/notes
+GET http://127.0.0.1:5000/notes
