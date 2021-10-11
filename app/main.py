@@ -28,6 +28,17 @@ class User(db.Model):
     def __refr__(self):
         return '<User {}>'.format(self.email)
 
+    # För att skapa tabellen via terminalen:
+    #
+    # python
+    # >>> from app.main import db
+    # >>> db.create_all()
+    ### För att skapa en första användare i databasen
+    # >>> from app.main import db
+    # >>> user = User(email='john@doe.com')
+    # >>> db.session.add(user)
+    # >>> db.session.commit()
+
 
 #notes_token = os.environ.get('NOTES_TOKEN')
 
