@@ -6,6 +6,7 @@ GET {{baseUrl}}
 
 ### test
 GET {{baseUrl}}/notes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTQxZTkzNGQ4ODYwMDdhZTQwMzMzMWYiLCJlbWFpbCI6ImphbmVAZG9lLmNvbSIsImlhdCI6MTYzMzk0Nzc5OSwiZXhwIjoxNjM0MDM0MTk5fQ.ejS4I_sC-okRlEpc2qHdfNNzDT5X7-uojrZfQ_V_Hzw
 
 ### Login to notes
 POST {{baseUrl}}/users/login

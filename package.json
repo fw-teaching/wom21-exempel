@@ -19,5 +19,9 @@
   "homepage": "https://github.com/fw-teaching/wom21-exempel#readme",
   "devDependencies": {
     "electron": "^15.1.1"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "electron-fetch": "^1.7.4"
   }
 }

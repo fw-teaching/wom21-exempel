@@ -5,12 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes 1.0</title>
+    <style>
+        #notes div {
+            float: left;
+            border: 1px gray solid;
+            margin: 5px;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+    </style>
 </head>
 <body>
     <h2>Notes</h2>
 
-    <p>Hello electron!</p>
-
+    <div id="notes"></div>
+    
     <input type="button" id="btn" value="Click Me!">
 
     <script src="./renderer.js"></script>

@@ -16,7 +16,15 @@ contextBridge.exposeInMainWorld('electron', {
         // ipcRenderer.invoke() triggar hanteraren 'btn-handler' i main.js, skickar med data bvid behov
         // returnerar svaret från btn-handler 
         return await ipcRenderer.invoke('btn-handler', data)
+    },
+
+    getNotes: async (data) => {
+        console.log('getNotes preload.js')
+
+        return await ipcRenderer.invoke('get-notes-handler', data)
     }
+
+
 
 })
 
